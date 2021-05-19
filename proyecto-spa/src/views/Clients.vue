@@ -4,13 +4,13 @@
             <div class="row d-flex flex-row justify-content-center">
                 <div class="col-3">
                     <router-link :to="{ name: 'clients', params: {id: client.id} }" 
-                    v-for="(client, index) of cleintesArreglo" :key="index">
+                    v-for="(client, index) of clientesArreglo" :key="index">
                     
                         <div class="mb-3">
                             <div class="card m-3 d-flex flex-row justify-content-around bg-light">
                                 <h5 class="mt-2">cliente {{client.id}}</h5>
                                 <div class="my-1">
-                                    <button type="button" class="btn btn-success btn-sm" @click="showClient=true; clienteId= client">
+                                    <button type="button" class="btn btn-success btn-sm" @click="ShowClients(true); clienteId= client">
                                         info
                                     </button>
                                 </div>
@@ -21,7 +21,7 @@
 
             <div class="col-3 text-center mt-3">
             
-            <Cliente v-if="showClient" :client="clienteId"></Cliente>
+            <Cliente v-show="showClient" :client="clienteId"></Cliente>
 
             </div>
 
@@ -31,53 +31,26 @@
 </template>
 
 <script>
+import Vuex from 'vuex'
 import Cliente from '../components/ClientComponent'
 
 export default {
     components: {
         Cliente
     },
+    computed:{
+        ...Vuex.mapState(['clientesArreglo', 'showClient'])
+    },
     data(){
         return{
-            cleintesArreglo: [{
-                id: 1,
-                nom: "Albert",
-                cognom: "Einstein",
-                prime: true
-                },
-                {
-                id: 2,
-                nom: "Sonia",
-                cognom: "Perez",
-                prime: false
-                },
-                {
-                id: 3,
-                nom: "Mark",
-                cognom: "Lin",
-                prime: true
-                },
-                {
-                id: 4,
-                nom: "Peter",
-                cognom: "Pan",
-                prime: false
-                }
-            ],
-            showClient: false,
-            clienteId: Object
+            clienteId: {
+                type: Object,
+                required: true
+            }
         }
     },
     methods:{
-        home(){
-            this.$router.push('/');
-        },
-        anterior(){
-            this.$router.go(-1);
-        },
-        siguiente(){
-            this.$router.go(1);
-        }
+        ...Vuex.mapMutations(['ShowClients'])
     }
 }
 </script>

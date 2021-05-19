@@ -6,22 +6,27 @@
             <div class="card-body">
                 <p>Id: {{ client.id}}</p>
                 <p>Prime: {{ client.prime}}</p>
-                <button @click="anterior" type="button" class="btn btn-success">Anterior</button>
+                <button @click="ShowClients(false); Anterior()" type="button" class="btn btn-success">Anterior</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import Vuex from 'vuex'
 export default {
     name: 'Cliente',
     props: {
     client: Object
   },
     methods:{
-        anterior(){
+        Anterior(){
             this.$router.go(-1);
-        }
+        },
+        ...Vuex.mapMutations(['ShowClients'])
+    },
+    computed:{
+        ...Vuex.mapState(['showClient'])
     }
 }
 </script>
