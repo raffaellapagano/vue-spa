@@ -27,8 +27,10 @@
                 Botiga
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="/botiga/alimentacio">Alimentació</a>
-                <a class="dropdown-item" href="/botiga/congelats">Congelats</a>
+                <a class="dropdown-item" @click="Show('botiga/alimentacio')">Alimentació</a>
+                <a class="dropdown-item" @click="Show('botiga/congelats')">Congelats</a>
+                <!-- <a class="dropdown-item" href="/botiga/alimentacio">Alimentació</a>
+                <a class="dropdown-item" href="/botiga/congelats">Congelats</a> -->
               </div>
             </li>
           </ul>
@@ -39,6 +41,18 @@
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods:
+  {
+    Show(item){
+      item = '/' + item;
+      this.$router.push(item);
+    }
+  }
+}
+</script>
 
 <style>
 #app {
