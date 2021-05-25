@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Show from '../components/Show.vue'
 
 Vue.use(VueRouter)
 
@@ -27,9 +26,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "magatzem" */ '../views/Magatzem.vue')
   },
   {
-    path: '/botiga/:Pid',
-    name: 'details',
-    component: Show
+    path: '/botiga',
+    name: 'Botiga',
+    component: () => import(/* webpackChunkName: "magatzem" */ '../views/Botiga.vue')
   }
 ]
 

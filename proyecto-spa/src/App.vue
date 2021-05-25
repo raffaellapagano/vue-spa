@@ -23,14 +23,12 @@
               <router-link class="nav-link" to="/magatzem">Magatzem</router-link>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <router-link class="nav-link dropdown-toggle" to="/botiga" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Botiga
-              </a>
+              </router-link>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" @click="Show('botiga/alimentacio')">Alimentació</a>
-                <a class="dropdown-item" @click="Show('botiga/congelats')">Congelats</a>
-                <!-- <a class="dropdown-item" href="/botiga/alimentacio">Alimentació</a>
-                <a class="dropdown-item" href="/botiga/congelats">Congelats</a> -->
+                <a class="dropdown-item" @click="ChangeCurrent('Alimentacio')">Alimentació</a>
+                <a class="dropdown-item" @click="ChangeCurrent('Congelat')">Congelats</a>
               </div>
             </li>
           </ul>
@@ -43,15 +41,24 @@
 </template>
 
 <script>
+
+import AlimentacioComp from './components/AlimentacioComponent'
+import CongelatComp from './components/CongelatComponent'
+import Vuex from 'vuex'
+
 export default {
-  methods:
-  {
-    Show(item){
-      item = '/' + item;
-      this.$router.push(item);
+  components:{
+    AlimentacioComp,
+    CongelatComp
+  },
+  computed:{
+        ...Vuex.mapState(['current'])
+    },
+    methods:{
+        ...Vuex.mapMutations(['ChangeCurrent'])
     }
   }
-}
+
 </script>
 
 <style>

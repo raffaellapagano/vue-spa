@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     showClient: false,
+    current: 'home',
     clientesArreglo: [{
       id: 1,
       nom: "Albert",
@@ -35,6 +36,9 @@ export default new Vuex.Store({
   mutations: {
     ShowClients(state, value){
       state.showClient = value;
+    },
+    ChangeCurrent(state, value){
+      state.current = value;
     }
   },
   actions: {
